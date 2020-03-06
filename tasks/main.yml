@@ -1,0 +1,17 @@
+---
+
+- dynamic_defaults:
+    hostvars: '{{ hostvars[inventory_hostname] }}'
+    defaults: '{{ buildah_dynamic_defaults }}'
+    must_match: yes
+  tags: [buildah, always]
+
+- block:
+    - include_tasks: setup-repository-{{ ansible_pkg_mgr }}.yml
+
+    - name: Install buildah packages
+      package:
+        name: '{{ buildah_packages }}'
+        state: present
+  become: '{{ do_become }}'
+  tags: [buildah, packages]

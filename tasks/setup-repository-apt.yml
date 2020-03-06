@@ -1,0 +1,16 @@
+---
+
+- block:
+    - name: Register buildah apt key
+      apt_key:
+        url: '{{ buildah_apt_key }}'
+        state: present
+
+    - name: Install buildah apt repository
+      apt_repository:
+        repo: '{{ buildah_apt_repository }}'
+        filename: ansible_roles_buildah
+        state: present
+        update_cache: yes
+  become: '{{ do_become }}'
+  tags: [buildah, packages]  # FIXME Remove when this is fixed https://github.com/ansible/ansible/issues/30882

@@ -1,0 +1,20 @@
+do_become: yes
+
+buildah_dynamic_defaults:
+
+  linux-mint-19.3:
+    buildah_apt_key: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_18.04/Release.key
+
+    buildah_apt_repository: deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04/ /
+
+  ubuntu:
+    buildah_apt_key: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_{{ ansible_distribution_version }}/Release.key
+
+    buildah_apt_repository: deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/ /
+
+buildah_packages:
+  - buildah
+  - podman
+  - runc
+  - slirp4netns
+# https://www.gitmemory.com/issue/containers/buildah/1754/518344930
