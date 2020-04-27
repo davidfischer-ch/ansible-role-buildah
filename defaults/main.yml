@@ -39,9 +39,9 @@ buildah_packages:
 
 buildah_registries_config_file: registries.conf.j2
 buildah_registries_certificates_files:  # _ -> . (dot)
-  - client_cert
-  - client_key
-  - ca_crt
+  - { key: client_cert, path: client.cert, hiddeh: no  }
+  - { key: client_key,  path: client.key,  hidden: yes }
+  - { key: ca_crt,      path: ca.crt,      hidden: no  }
 
 buildah_registries_block: []
 buildah_registries_insecure: []

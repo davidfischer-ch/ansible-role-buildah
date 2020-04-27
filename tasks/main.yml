@@ -36,14 +36,14 @@
     # https://www.mankier.com/5/containers-certs.d
     - name: Setup Buildah registries certificates
       copy:
-        content: '{{ item.0[item.1] }}'
-        dest: "/etc/containers/certs.d/{{ item.0.host }}:{{ item.0.port|int }}/{{ item.1|regex_replace('_', '.') }}"
+        content: '{{ item.0[item.1.key] }}'
+        dest: '/etc/containers/certs.d/{{ item.0.host }}:{{ item.0.port|int }}/{{ item.1.path }}'
         mode: 0644
+      diff: not item.1.hidden
       loop: '{{ buildah_registries_certificates|product(buildah_registries_certificates_files)|list }}'
       loop_control:
-        label: '{{ item.0.host }}:{{ item.0.port|int }} -> {{ item.1 }}'
-      # no_log: yes
-      when: item.0.state|default('present') == 'present' and item.1 in item.0
+        label: '{{ item.0.host }}:{{ item.0.port|int }} -> {{ item.1.key }}'
+      when: item.0.state|default('present') == 'present' and item.1.key in item.0
 
     - name: Configure Buildah storage
       template:
