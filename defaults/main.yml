@@ -38,9 +38,15 @@ buildah_packages:
 # Registries
 
 buildah_registries_config_file: registries.conf.j2
+buildah_registries_certificates_files:  # _ -> . (dot)
+  - client_cert
+  - client_key
+  - ca_crt
 
 buildah_registries_block: []
 buildah_registries_insecure: []
+
+buildah_registries_certificates: {}
 
 # Storage
 

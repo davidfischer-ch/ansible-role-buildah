@@ -1,0 +1,5 @@
+---
+
+buildah_registries_certificates_states:
+  absent: absent
+  present: directory

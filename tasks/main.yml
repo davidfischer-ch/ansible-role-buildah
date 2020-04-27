@@ -24,6 +24,27 @@
         mode: 0644
       notify: containers registries changed
 
+    - name: Create directories for Buildah registries certificates
+      file:
+        path: '/etc/containers/certs.d/{{ item.host }}:{{ item.port|int }}'
+        state: "{{ buildah_registries_certificates_states[item.state|default('present')] }}"
+        mode: 0755
+      loop: '{{ buildah_registries_certificates }}'
+      loop_control:
+        label: '{{ item.host }}:{{ item.port|int }}'
+
+    # https://www.mankier.com/5/containers-certs.d
+    - name: Setup Buildah registries certificates
+      copy:
+        content: '{{ item.0[item.1] }}'
+        dest: "/etc/containers/certs.d/{{ item.0.host }}:{{ item.0.port|int }}/{{ item.1|regex_replace('_', '.') }}"
+        mode: 0644
+      loop: '{{ buildah_registries_certificates|product(buildah_registries_certificates_files)|list }}'
+      loop_control:
+        label: '{{ item.0.host }}:{{ item.0.port|int }} -> {{ item.1 }}'
+      # no_log: yes
+      when: item.0.state|default('present') == 'present' and item.1 in item.0
+
     - name: Configure Buildah storage
       template:
         src: '{{ buildah_storage_config_file }}'
