@@ -13,6 +13,10 @@ runroot = "{{ buildah_storage_run_directory }}"
 # Primary Read/Write location of container storage
 graphroot = "{{ buildah_storage_graph_directory }}"
 
+# Storage path for rootless users
+#
+rootless_storage_path = "{{ buildah_storage_rootless_directory }}"
+
 [storage.options]
 # Storage options to be passed to underlying storage drivers
 

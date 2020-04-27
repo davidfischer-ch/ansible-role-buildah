@@ -49,6 +49,7 @@ buildah_storage_config_file: storage.conf.j2
 buildah_storage_driver: overlay
 buildah_storage_run_directory: /var/run/containers/storage
 buildah_storage_graph_directory: /var/lib/containers/storage
+buildah_storage_rootless_directory: $HOME/.local/share/containers/storage
 
 buildah_storage_additional_image_stores: []
 
