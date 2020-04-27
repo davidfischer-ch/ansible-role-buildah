@@ -15,3 +15,20 @@
         state: present
   become: '{{ do_become }}'
   tags: [buildah, packages]
+
+- block:
+    - name: Configure Buildah registries
+      template:
+        src: '{{ buildah_registries_config_file }}'
+        dest: /etc/containers/registries.conf
+        mode: 0644
+      notify: containers registries changed
+
+    - name: Configure Buildah storage
+      template:
+        src: '{{ buildah_storage_config_file }}'
+        dest: /etc/containers/storage.conf
+        mode: 0644
+      notify: containers storage changed
+  become: '{{ do_become }}'
+  tags: [buildah, config]

@@ -1,0 +1,11 @@
+---
+
+# prevent error if no-one is listening to this event
+- name: containers registries changed
+  command:
+    ls /dev/null
+
+# prevent error if no-one is listening to this event
+- name: containers storage changed
+  command:
+    ls /dev/null

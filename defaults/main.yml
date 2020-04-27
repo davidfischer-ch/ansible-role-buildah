@@ -7,10 +7,26 @@ buildah_dynamic_defaults:
 
     buildah_apt_repository: deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04/ /
 
+    buildah_registries_search:
+      - docker.io
+      - quay.io
+
+  redhat:
+    buildah_registries_search:
+      - registry.access.redhat.com
+      - docker.io
+      - registry.fedoraproject.org
+      - quay.io
+      - registry.centos.org
+
   ubuntu:
     buildah_apt_key: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_{{ ansible_distribution_version }}/Release.key
 
     buildah_apt_repository: deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/ /
+
+    buildah_registries_search:
+      - docker.io
+      - quay.io
 
 buildah_packages:
   - buildah
@@ -18,3 +34,25 @@ buildah_packages:
   - runc
   - slirp4netns
 # https://www.gitmemory.com/issue/containers/buildah/1754/518344930
+
+# Registries
+
+buildah_registries_config_file: registries.conf.j2
+
+buildah_registries_block: []
+buildah_registries_insecure: []
+
+# Storage
+
+buildah_storage_config_file: storage.conf.j2
+
+buildah_storage_driver: overlay
+buildah_storage_run_directory: /var/run/containers/storage
+buildah_storage_graph_directory: /var/lib/containers/storage
+
+buildah_storage_additional_image_stores: []
+
+buildah_storage_overlay_ignore_chown_errors: no
+buildah_storage_overlay_max_size: ''
+buildah_storage_overlay_mount_options: [nodev]
+buildah_storage_overlay_mount_program: /usr/bin/fuse-overlayfs
