@@ -48,7 +48,7 @@ additionalimagestores = {{ buildah_storage_additional_image_stores|to_json }}
 # squashed down to the default uid in the container.  These images will have no
 # separation between the users in the container. Only supported for the overlay
 # and vfs drivers.
-ignore_chown_errors = {{ buildah_storage_overlay_ignore_chown_errors|bool|ternary('true', 'false') }}
+ignore_chown_errors = "{{ buildah_storage_overlay_ignore_chown_errors|bool|ternary('true', 'false') }}"
 
 # Path to an helper program to use for mounting the file system instead of mounting it
 # directly.
