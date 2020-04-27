@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.0.2
+
+### Fix and enhancements
+
+- Fix Failed to parse /etc/containers/storage.conf toml: cannot load TOML value of type bool into a Go string
+- Update storage config template accordingly to default
+- Add variable buildah_storage_rootless_directory
+- Manage registries certificates
+
 ## v1.0.1
 
 ### Fix and enhancements
