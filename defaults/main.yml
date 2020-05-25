@@ -45,8 +45,7 @@ buildah_registries_certificates_files:  # _ -> . (dot)
 
 buildah_registries_block: []
 buildah_registries_insecure: []
-
-buildah_registries_certificates: {}
+buildah_registries_certificates: []
 
 # Storage
 
