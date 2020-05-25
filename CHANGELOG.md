@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.3
+
+### Fix and enhancements
+
+- Fix default value
+
 ## v1.0.2
 
 ### Fix and enhancements
