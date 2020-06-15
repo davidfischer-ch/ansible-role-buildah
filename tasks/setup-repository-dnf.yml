@@ -1,0 +1,51 @@
+# See CentOS8 -> https://github.com/containers/buildah/blob/master/install.md
+
+# sudo dnf -y module disable container-tools
+# sudo dnf -y install 'dnf-command(copr)'
+# sudo dnf -y copr enable rhcontainerbot/container-selinux
+
+# cd /etc/yum.repos.d
+# sudo wget https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/CentOS_8/devel:kubic:libcontainers:stable.repo
+# sudo dnf -y install buildah
+
+---
+
+- block:
+    # https://serverfault.com/a/991802/415599
+    - name: Remove Container Tools dnf module
+      dnf:
+        name: '@container-tools'
+        state: absent
+
+    # - name: Install copr dnf plugin
+    #   dnf:
+    #     name: dnf-command(copr)
+    #     state: present
+
+    # https://docs.pagure.org/copr.copr/how_to_enable_repo.html#how-to-enable-repo
+    - name: Install container-selinux yum repository
+      yum_repository:
+        file: ansible_roles_buildah
+        name: copr:copr.fedorainfracloud.org:rhcontainerbot:container-selinux
+        description: Copr repo for container-selinux owned by rhcontainerbot
+        baseurl: https://download.copr.fedorainfracloud.org/results/rhcontainerbot/container-selinux/centos-stream-$basearch/
+        gpgkey: https://download.copr.fedorainfracloud.org/results/rhcontainerbot/container-selinux/pubkey.gpg
+        gpgcheck: yes
+        proxy: '{{ buildah_yum_repository_proxy }}'
+        skip_if_unavailable: yes
+        enabled: yes
+        state: absent
+
+    - name: Install libcontainers yum repository
+      yum_repository:
+        file: ansible_roles_buildah
+        name: devel_kubic_libcontainers_stable
+        description: Stable releases of upstream github.com/containers packages (CentOS_$releasever)
+        baseurl: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/CentOS_$releasever/
+        gpgkey: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/CentOS_$releasever/repodata/repomd.xml.key
+        gpgcheck: yes
+        proxy: '{{ buildah_yum_repository_proxy }}'
+        enabled: yes
+        state: present
+  become: '{{ do_become }}'
+  tags: [buildah, packages]  # FIXME Remove when this is fixed https://github.com/ansible/ansible/issues/30882

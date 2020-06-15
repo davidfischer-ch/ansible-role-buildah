@@ -35,6 +35,8 @@ buildah_packages:
   - slirp4netns
 # https://www.gitmemory.com/issue/containers/buildah/1754/518344930
 
+buildah_yum_repository_proxy: '{{ omit }}'
+
 # Registries
 
 buildah_registries_config_file: registries.conf.j2
