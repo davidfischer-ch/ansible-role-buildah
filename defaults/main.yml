@@ -4,7 +4,6 @@ buildah_dynamic_defaults:
 
   linux-mint-19.3:
     buildah_apt_key: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_18.04/Release.key
-
     buildah_apt_repository: deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04/ /
 
     buildah_registries_search:
@@ -12,6 +11,7 @@ buildah_dynamic_defaults:
       - quay.io
 
   redhat:
+
     buildah_registries_search:
       - registry.access.redhat.com
       - docker.io
