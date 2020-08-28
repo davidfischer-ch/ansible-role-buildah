@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.4
+
+- RHEL 8 compat
+
 ## v1.0.3
 
 ### Fix and enhancements
