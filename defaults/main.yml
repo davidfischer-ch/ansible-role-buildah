@@ -12,9 +12,6 @@ buildah_dynamic_defaults:
 
   redhat:
 
-    buildah_packages:
-      - buildah
-
     buildah_registries_search:
       - registry.access.redhat.com
       - docker.io
