@@ -12,12 +12,21 @@ buildah_dynamic_defaults:
 
   redhat:
 
+    buildah_packages:
+      - buildah
+
     buildah_registries_search:
       - registry.access.redhat.com
       - docker.io
       - registry.fedoraproject.org
       - quay.io
       - registry.centos.org
+
+  redhat-7.*:
+    buildah_yum_repository_enabled: yes
+
+  redhat-8.*:
+    buildah_yum_repository_enabled: no
 
   ubuntu:
     buildah_apt_key: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_{{ ansible_distribution_version }}/Release.key

@@ -49,3 +49,4 @@
         state: present
   become: '{{ do_become }}'
   tags: [buildah, packages]  # FIXME Remove when this is fixed https://github.com/ansible/ansible/issues/30882
+  when: buildah_yum_repository_enabled|bool
