@@ -10,6 +10,8 @@ buildah_dynamic_defaults:
       - docker.io
       - quay.io
 
+    buildah_storage_overlay_mount_program: /usr/bin/fuse-overlayfs
+
   redhat:
 
     buildah_registries_search:
@@ -18,6 +20,8 @@ buildah_dynamic_defaults:
       - registry.fedoraproject.org
       - quay.io
       - registry.centos.org
+
+    buildah_storage_overlay_mount_program: ''  # FIXME Fix this issue: useradd: /etc/passwd.9: lock file already used
 
   redhat-7.*:
     buildah_yum_repository_enabled: yes
@@ -33,6 +37,8 @@ buildah_dynamic_defaults:
     buildah_registries_search:
       - docker.io
       - quay.io
+
+    buildah_storage_overlay_mount_program: /usr/bin/fuse-overlayfs
 
 buildah_packages:
   - buildah
@@ -69,4 +75,3 @@ buildah_storage_additional_image_stores: []
 buildah_storage_overlay_ignore_chown_errors: no
 buildah_storage_overlay_max_size: ''
 buildah_storage_overlay_mount_options: [nodev]
-buildah_storage_overlay_mount_program: /usr/bin/fuse-overlayfs
