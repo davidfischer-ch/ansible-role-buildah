@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.5
+
+- Fix this issue: "useradd: /etc/passwd.9: lock file already used" on RHEL
+- Add metacopy=on to overlay mount options
+
 ## v1.0.4
 
 - RHEL 8 compat
