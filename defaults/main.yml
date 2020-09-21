@@ -74,4 +74,4 @@ buildah_storage_additional_image_stores: []
 
 buildah_storage_overlay_ignore_chown_errors: no
 buildah_storage_overlay_max_size: ''
-buildah_storage_overlay_mount_options: [nodev]
+buildah_storage_overlay_mount_options: [nodev, metacopy=on]
