@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.1
+
+### Fix and enhancements
+
+- Ubuntu 22.04 compat
+
 ## v1.1.0
 
 ### Minor compatibility breaks
