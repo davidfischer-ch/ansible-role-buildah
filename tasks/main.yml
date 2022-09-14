@@ -21,14 +21,14 @@
       template:
         src: '{{ buildah_registries_config_file }}'
         dest: /etc/containers/registries.conf
-        mode: 0644
+        mode: '644'
       notify: containers registries changed
 
     - name: Create directories for Buildah registries certificates
       file:
         path: '/etc/containers/certs.d/{{ item.host }}:{{ item.port|int }}'
         state: "{{ buildah_registries_certificates_states[item.state|default('present')] }}"
-        mode: 0755
+        mode: '755'
       loop: '{{ buildah_registries_certificates }}'
       loop_control:
         label: '{{ item.host }}:{{ item.port|int }}'
@@ -38,7 +38,7 @@
       copy:
         content: '{{ item.0[item.1.key] }}'
         dest: '/etc/containers/certs.d/{{ item.0.host }}:{{ item.0.port|int }}/{{ item.1.path }}'
-        mode: 0644
+        mode: '644'
       diff: not item.1.hidden
       loop: '{{ buildah_registries_certificates|product(buildah_registries_certificates_files)|list }}'
       loop_control:
@@ -49,7 +49,7 @@
       template:
         src: '{{ buildah_storage_config_file }}'
         dest: /etc/containers/storage.conf
-        mode: 0644
+        mode: '644'
       notify: containers storage changed
   become: '{{ do_become }}'
   tags: [buildah, config]
