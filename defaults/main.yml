@@ -39,7 +39,7 @@ buildah_dynamic_defaults:
 
     buildah_storage_overlay_mount_program: /usr/bin/fuse-overlayfs
 
-  ubuntu-22.*:
+  ubuntu-2[2-9].*:
     # Not required anymore, see https://installati.one/ubuntu/22.04/buildah/
     buildah_apt_key: ''
     buildah_apt_repository: ''
