@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.4 (2024-10-31)
+
+### Minor compatibility breaks
+
+* Add `skopeo` to `buildah_packages`
+
 ## v1.1.3 (2024-04-03)
 
 ### Fix and enhancements
