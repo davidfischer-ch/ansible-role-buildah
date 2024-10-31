@@ -48,6 +48,7 @@ buildah_packages:
   - buildah
   - podman
   - runc
+  - skopeo
   - slirp4netns
 # https://www.gitmemory.com/issue/containers/buildah/1754/518344930
 
